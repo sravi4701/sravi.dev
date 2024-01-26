@@ -22,21 +22,19 @@ export default async function Home() {
           </h1>
           <h3 className="text-lg">Software Engineer at TripGuru</h3>
           <p className="mt-2">
-            I'm a software developer and a technical writer. I love working with
+            I&apos;m a software developer and a technical writer. I love working with
             open source technologies and writing about what I learn. I mainly
-            enjoy working with React Native and Expo. Currently working as a
-            documentation maintainer at 𝝠 Expo among other stuff.
+            enjoy working with Python and Javascript. Currently working as a
+            software engineer at TripGuru among other stuff.
           </p>
         </div>
       </section>
       <section className="full-intro pt-8">
-        I've been writing online since 2017, mostly cross-platform mobile
-        development and sometimes on web. I've written over 150 articles and
+        I&apos;ve been writing online since 2017, mostly cross-platform mobile
+        development and sometimes on web. I&apos;ve written over 150 articles and
         tutorials for more than 30 publications and organizations across the
         internet. Hence, I started this blog to share my software development
-        journey. Previously, I've worked as Developer Advocate at Draftbit, and
-        Senior Content Developer at Vercel. Read more about me on the About
-        page. Social links: 🐦 X (Twitter) 🐙 GitHub ✉️ Email
+        journey.
       </section>
 
       <section>
