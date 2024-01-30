@@ -1,0 +1,73 @@
+---
+title: "Let’s Learn Python: Unpacking"
+publishedAt: '2023-02-01'
+slug: 'welcome'
+tag: 'intro'
+---
+![](https://cdn-images-1.medium.com/max/2400/0*w8kL6Ue48QV80Wl6.)
+
+“A brown mug next to a MacBook with lines of code on its screen” by [Artem Sapegin](https://unsplash.com/@sapegin?utm_source=medium&utm_medium=referral) on [Unsplash](https://unsplash.com?utm_source=medium&utm_medium=referral)
+
+> **1. Unpacking a sequence into a separate variables.**
+
+So you have given a sequence(like array, string etc) and you want to extract it’s data into separate variable how will you do that?
+
+This can be achieved with assignment operator, The syntax is very simple
+```python
+# comma_separated_variables = sequence
+
+# given a data in the form of list
+
+data = ['Ravi', 21, (1996, 12, 5)]
+
+# extract name, age, dob from data
+
+name, age, dob = data
+
+print(name) # Ravi
+
+print(age) # 21
+
+print(dob) # (1996, 12, 5)
+
+# It works with any sequence eg.
+
+s = 'hello'
+
+a, b, _, c, d = s
+
+print(b) # e
+```
+
+> **2. Unpacking elements from iterables of arbitrary length**
+
+In this case you want to unpack N elements from an iterables but this time the length of iterables can be more than N. Here we can use Python * expression. To know more about * expression consider [this](https://stackoverflow.com/questions/2921847/what-does-the-star-operator-mean) question on stackoverflow.
+```python
+grades = [5, 6, 7, 8, 9]
+
+first, *middle, last = grades
+
+print(first) # 5
+
+print(last) # 9
+
+print(middle) # [6, 7, 8]
+
+# The variable associated with * will always be a list
+
+# We also can't use two * expression like:
+
+first, *middle, *last = grades # this will get an error
+
+# More complex example
+
+data = ('Ravi', 21, (5, 12, 1996))
+
+# We need only name and year from data
+
+name, *_, (*_, year) = data
+
+print(name) # Ravi
+
+print(year) # 1996
+```

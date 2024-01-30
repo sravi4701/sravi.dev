@@ -22,8 +22,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} max-w-2xl mb-40 flex flex-col md:flex-row mx-4 mt-8 lg:mx-auto`}>
-        <div className="flex-auto min-w-0 flex flex-col px-2 md:px-0">
+      <body className={`${inter.className} max-w-3xl mb-40 flex flex-col md:flex-row lg:mx-auto`}>
+        <div className="flex-auto min-w-0 flex flex-col">
           <NavBar />
           {children}
         </div>
