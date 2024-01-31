@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { getBlogPosts } from '@/utils/posts';
+import { formatDate, getBlogPosts } from '@/utils/posts';
 import { notFound } from 'next/navigation';
 import CustomMDX from '@/components/CustomMDX';
 
@@ -15,9 +15,9 @@ async function PageDetail({ params }: { params: { slug: string } }) {
 
   return (
     <main>
-      <h1 className="font-medium text-2xl mt-4">{post.metadata.title}</h1>
-      <div>{post.metadata.publishedAt}</div>
-      <article className="prose md:prose-lg">
+      <h1 className="font-medium text-2xl mt-4 px-2 md:p-0">{post.metadata.title}</h1>
+      <div className="px-2 md:p-0">{formatDate(post.metadata.publishedAt)}</div>
+      <article className="prose md:prose-lg p-2 md:p-0">
         <CustomMDX source={post.content} />
       </article>
     </main>

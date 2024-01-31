@@ -47,5 +47,9 @@
 } */
 
 .link {
-  @apply text-violet-600
+  @apply text-violet-600 font-medium
+}
+
+.technology {
+  @apply font-medium text-violet-800 bg-violet-100 rounded-sm p-0.5
 }
