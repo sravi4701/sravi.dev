@@ -6,6 +6,17 @@ export const twitterUrl = "https://x.com/ravishankar140";
 
 export const projects = [
   {
+    name: "Portfolio(This website)",
+    year: "2024",
+    shortDescription:
+      "Portfolio + blog website for self.",
+    techStack: "Next.js • Markdown • React",
+    demo_link: "",
+    sourceLink: "https://github.com/sravi4701/sravi.dev",
+    sourceFrontendLink: "",
+    sourceBackendLink: "",
+  },
+  {
     name: "Eglify",
     year: "2023",
     shortDescription:
