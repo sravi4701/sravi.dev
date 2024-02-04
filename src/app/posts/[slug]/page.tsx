@@ -15,8 +15,8 @@ async function PageDetail({ params }: { params: { slug: string } }) {
 
   return (
     <main>
-      <h1 className="font-medium text-2xl mt-4 px-2 md:p-0">{post.metadata.title}</h1>
-      <div className="px-2 md:p-0">{formatDate(post.metadata.publishedAt)}</div>
+      <h1 className="font-medium text-4xl mt-4 px-2 md:p-0">{post.metadata.title}</h1>
+      <div className="px-2 mb-2 md:p-0 italic">{formatDate(post.metadata.publishedAt)}</div>
       <article className="prose md:prose-lg p-2 md:p-0">
         <CustomMDX source={post.content} />
       </article>

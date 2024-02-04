@@ -8,8 +8,8 @@ function NavBar() {
             <Link href='/' className='underline underline-offset-2'>Home</Link>
             <Link href='/posts' className='md:ml-4 underline underline-offset-2'>Blog</Link>
             <Link href='/about' className='md:ml-4 underline underline-offset-2'>About</Link>
-            <Link href='/projects' className='md:ml-4 underline underline-offset-2'>Projects</Link>
             <Link href='/works' className='md:ml-4 underline underline-offset-2'>Works</Link>
+            <Link href='/projects' className='md:ml-4 underline underline-offset-2'>Projects</Link>
         </nav>
     </div>
   )

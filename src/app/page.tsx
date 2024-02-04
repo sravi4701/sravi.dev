@@ -1,13 +1,9 @@
+import { githubUrl, linkedInUrl, profileImageSrc, twitterUrl } from "@/utils/constants";
 import { formatDate, getBlogPosts } from "@/utils/posts";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function Home() {
-  const profileImageSrc =
-    "https://media.licdn.com/dms/image/C5103AQFyY2XkIKNS9A/profile-displayphoto-shrink_400_400/0/1520796154607?e=1711584000&v=beta&t=mOlktllvTnhryV37uH81td-3Mopl-2jYlDvU9ciHP7I";
-  const linkedInUrl = "https://linkedin.com/in/sravi4701";
-  const githubUrl = "https://github.com/sravi4701";
-  const twitterUrl = "https://x.com/ravishankar140";
 
   let posts = getBlogPosts();
   // Sort the posts as required.
@@ -36,7 +32,7 @@ export default async function Home() {
             Software Engineer at <span className="font-medium">TripGuru</span>
           </h6>
           <p className="mt-2">
-            I&apos;m a software engineer with over 5 years of professional
+            I&apos;m a software engineer with over 5+ years of professional
             programming experience. I began my journey as a backend developer,
             transitioned to a full-stack developer, and now I&apos;m focusing
             more on backend development. I mainly enjoy working with{" "}
