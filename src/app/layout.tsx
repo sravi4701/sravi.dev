@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 // / -> page.tsx
 /**
  * This is the shared layout for all the routes
- * @param param0 
- * @returns 
+ * @param param0
+ * @returns
  */
 export default function RootLayout({
   children,
@@ -22,8 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} max-w-3xl mb-40 flex flex-col md:flex-row lg:mx-auto`}>
-        <div className="flex-auto min-w-0 flex flex-col">
+      <body
+        className={`${inter.className} max-w-3xl mb-40 flex flex-col md:flex-row lg:mx-auto`}
+      >
+        <div className="flex-auto min-w-0 flex flex-col px-2 md:px-0">
           <NavBar />
           {children}
         </div>

@@ -135,7 +135,6 @@ function Works() {
           <a className="font-bold link" href="https://www.datapeace.in/">
             Datapeace
           </a>{" "}
-          — <span className="italic">Nov 2018 - Sept 2019</span>
           <span className="italic">April 2018 - Oct 2018</span>
         </div>
         <div className="mt-2">
