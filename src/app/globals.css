@@ -86,10 +86,6 @@
 }
 
 @layer components {
-  .link {
-    @apply text-accent underline decoration-accent/30 underline-offset-4 transition-colors hover:decoration-accent;
-  }
-
   .label {
     @apply font-mono text-xs uppercase tracking-label text-fg-faint;
   }
