@@ -2,54 +2,116 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --bg: 250 250 249;
+    --surface: 255 255 255;
+    --surface-2: 245 245 244;
+    --border: 231 229 228;
+    --border-strong: 214 211 209;
+    --fg: 28 25 23;
+    --fg-muted: 87 83 78;
+    --fg-faint: 120 113 108;
+    --accent: 180 83 9;
+    --accent-hover: 146 64 14;
+    --accent-soft: 253 243 231;
+    --ring: 180 83 9;
 
-/* ::selection {
-  background-color: #47a3f3;
-  color: #fefefe;
-} */
+    /* sugar-high syntax tokens — light */
+    --sh-class: #2d5e9d;
+    --sh-identifier: #354150;
+    --sh-sign: #8996a3;
+    --sh-string: #0f766e;
+    --sh-keyword: #b45309;
+    --sh-comment: #a8a29e;
+    --sh-jsxliterals: #6266d1;
+    --sh-property: #2d5e9d;
+    --sh-entity: #6266d1;
 
-/**
- * Types that sugar-high have:
- *
- * identifier
- * keyword
- * string
- * Class, number and null
- * sign
- * comment
- * jsxliterals
- */
- :root {
-  --sh-class: #2d5e9d;
-  --sh-identifier: #354150;
-  --sh-sign: #8996a3;
-  --sh-string: #00a99a;
-  --sh-keyword: #f47067;
-  --sh-comment: #a19595;
-  --sh-jsxliterals: #6266d1;
+    color-scheme: light;
+  }
+
+  .dark {
+    --bg: 11 11 12;
+    --surface: 19 19 21;
+    --surface-2: 26 26 29;
+    --border: 39 39 43;
+    --border-strong: 58 58 64;
+    --fg: 245 245 244;
+    --fg-muted: 168 162 158;
+    --fg-faint: 115 115 115;
+    --accent: 245 158 11;
+    --accent-hover: 251 191 36;
+    --accent-soft: 42 28 10;
+    --ring: 245 158 11;
+
+    /* sugar-high syntax tokens — dark */
+    --sh-class: #7ab8f5;
+    --sh-identifier: #d6d3d1;
+    --sh-sign: #8b8b93;
+    --sh-string: #5eead4;
+    --sh-keyword: #f59e0b;
+    --sh-comment: #6e6a67;
+    --sh-jsxliterals: #a5a8f0;
+    --sh-property: #7ab8f5;
+    --sh-entity: #a5a8f0;
+
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-padding-top: 5.5rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    @apply bg-bg text-fg antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    @apply bg-accent-soft text-accent;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--ring));
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
 }
 
-.prose pre {
-  @apply bg-neutral-50 dark:bg-neutral-900 rounded-lg overflow-x-auto border border-neutral-200 dark:border-neutral-900;
+@layer components {
+  .link {
+    @apply text-accent underline decoration-accent/30 underline-offset-4 transition-colors hover:decoration-accent;
+  }
+
+  .label {
+    @apply font-mono text-xs uppercase tracking-label text-fg-faint;
+  }
 }
 
-/* This is for adding the line no. in the code block */
-/* pre code {
-  counter-reset: sh-line-number;
+@layer utilities {
+  .prose pre {
+    @apply rounded-lg border border-border bg-surface-2 overflow-x-auto;
+  }
+
+  .prose code {
+    @apply font-mono;
+  }
 }
 
-.sh__line::before {
-  counter-increment: sh-line-number 1;
-  content: counter(sh-line-number);
-  margin-right: 24px;
-  text-align: right;
-  color: #a4a4a4;
-} */
-
-.link {
-  @apply text-violet-600 font-medium
-}
-
-.technology {
-  @apply font-medium text-violet-800 bg-violet-100 rounded-sm p-0.5
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
