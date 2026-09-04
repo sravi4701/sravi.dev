@@ -11,12 +11,10 @@ export const experience: Experience[] = [
     current: true,
     highlights: [
       {
-        text: "Built the OTA distribution stack driving over 70% of TripGuru's bookings across three API integrations — GetYourGuide's supplier API, the OCTO standard for Klook, and Bokun, which fans out to TripAdvisor, Expedia, Airbnb and Civitatis — covering availability sync, reservation, booking and cancellation.",
-        metric: "over 70% of TripGuru's bookings",
+        text: "Built the OTA distribution stack that carries the bulk of the company's booking volume, across three API integrations — GetYourGuide's supplier API, the OCTO standard for Klook, and Bokun, which fans out to TripAdvisor, Expedia, Airbnb and Civitatis — covering availability sync, reservation, booking and cancellation.",
       },
       {
-        text: "Automated booking creation from partner confirmation emails on non-API platforms including Hotelbeds, KKDay and Ceetiz, using n8n and LLM-based PDF parsing, ingesting 300 bookings per month with no manual entry.",
-        metric: "300 bookings per month",
+        text: "Automated booking creation from partner confirmation emails on non-API platforms including Hotelbeds, KKDay and Ceetiz, using n8n and LLM-based PDF parsing, removing manual entry for a steady share of daily bookings.",
       },
       {
         text: "Designed and rolled out the engineering team's agentic development workflow on Claude Code — custom skills, orchestration rules, PR creation and review templates, and MCP integrations with GitHub and Notion — now the standard path from ticket to merged PR.",

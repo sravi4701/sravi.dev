@@ -27,14 +27,6 @@ export default function Footer() {
               {social.label}
             </a>
           ))}
-          <a
-            href={profile.resumeHref}
-            target="_blank"
-            rel="noreferrer"
-            className="transition-colors hover:text-fg"
-          >
-            Résumé
-          </a>
         </nav>
       </Container>
     </footer>

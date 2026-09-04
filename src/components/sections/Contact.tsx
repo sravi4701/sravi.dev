@@ -34,13 +34,15 @@ export default function Contact() {
           </a>
 
           <div className="mt-10 flex flex-wrap items-center gap-3">
-            <LinkButton href={profile.resumeHref} variant="primary" external>
-              Download résumé
-            </LinkButton>
             {socials
               .filter((social) => social.external)
-              .map((social) => (
-                <LinkButton key={social.key} href={social.href} external>
+              .map((social, index) => (
+                <LinkButton
+                  key={social.key}
+                  href={social.href}
+                  variant={index === 0 ? "primary" : "ghost"}
+                  external
+                >
                   {social.label}
                 </LinkButton>
               ))}

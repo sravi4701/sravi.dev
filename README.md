@@ -21,7 +21,7 @@ Site content is data, not markup. Everything on the home page comes from typed m
 
 | File | Holds |
 |---|---|
-| `profile.ts` | Name, roles, bio, location, résumé and image paths |
+| `profile.ts` | Name, roles, bio, location, image path |
 | `experience.ts` | Work history, with an optional `metric` per bullet that renders emphasised |
 | `projects.ts` | Featured cards and the archive list |
 | `skills.ts` | Skill groups |

@@ -1,4 +1,4 @@
-export type SocialKey = "github" | "linkedin" | "email" | "resume";
+export type SocialKey = "github" | "linkedin" | "email";
 
 export interface Social {
   key: SocialKey;
@@ -25,7 +25,6 @@ export interface Profile {
   imageSrc: string;
   imageAlt: string;
   email: string;
-  resumeHref: string;
   startYear: number;
   education: Education;
 }

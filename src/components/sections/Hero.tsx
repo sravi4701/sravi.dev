@@ -31,9 +31,6 @@ export default function Hero() {
               <LinkButton href="#contact" variant="primary">
                 Get in touch
               </LinkButton>
-              <LinkButton href={profile.resumeHref} external>
-                Résumé
-              </LinkButton>
             </div>
 
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
