@@ -1,32 +1,44 @@
-import { formatDate, getBlogPosts } from "@/utils/posts";
+import type { Metadata } from "next";
 import Link from "next/link";
-import React from "react";
+import Container from "@/components/layout/Container";
+import { formatDate } from "@/utils/posts";
+import { getSortedPosts } from "@/utils/postsSorted";
 
-async function Post() {
-  let posts = getBlogPosts();
-  // Sort the posts as required.
-  posts = posts.sort((a, b) => {
-    if (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) {
-      return -1;
-    }
-    return 1;
-  });
+export const metadata: Metadata = {
+  title: "Writing",
+  description: "Notes on engineering, mostly Python and web platform work.",
+  alternates: { canonical: "/posts" },
+};
+
+export default function Posts() {
+  const posts = getSortedPosts();
 
   return (
-    <main>
-      <section className=" px-2 md:px-0 pt-8">
-        <h1 className="font-medium text-2xl md:text-3xl">All Posts</h1>
-        <div className="flex flex-col">
-        {posts.slice(0, 3).map(post => {
-            return <Link key={post.slug} href={`/posts/${post.slug}`} className="py-4 px-2 mt-2 rounded flex flex-col md:flex-row justify-between bg-neutral-50">
-              <div className="text-lg">{post.metadata.title}</div>
-              <div>{formatDate(post.metadata.publishedAt)}</div>
-            </Link>;
-        })}
-        </div>
-      </section>
-    </main>
+    <section className="py-16 md:py-24">
+      <Container>
+        <p className="label mb-3">Writing</p>
+        <h1 className="font-display text-4xl leading-tight md:text-5xl">
+          Notes and learnings
+        </h1>
+
+        <ul className="mt-12 divide-y divide-border border-y border-border">
+          {posts.map((post) => (
+            <li key={post.slug}>
+              <Link
+                href={`/posts/${post.slug}`}
+                className="group flex flex-col gap-1 py-5 transition-colors sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
+              >
+                <span className="text-lg transition-colors group-hover:text-accent">
+                  {post.metadata.title}
+                </span>
+                <span className="shrink-0 font-mono text-xs text-fg-faint">
+                  {formatDate(post.metadata.publishedAt)}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Container>
+    </section>
   );
 }
-
-export default Post;

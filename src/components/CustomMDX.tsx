@@ -1,36 +1,36 @@
 /* eslint-disable react/display-name */
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { MDXRemote } from 'next-mdx-remote/rsc';
-import { highlight } from 'sugar-high';
+import Link from "next/link";
+import Image from "next/image";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import { highlight } from "sugar-high";
 
 function Table({ data }) {
-  let headers = data.headers.map((header, index) => (
-    <th key={index}>{header}</th>
-  ));
-  let rows = data.rows.map((row, index) => (
-    <tr key={index}>
-      {row.map((cell, cellIndex) => (
-        <td key={cellIndex}>{cell}</td>
-      ))}
-    </tr>
-  ));
-
   return (
     <table>
       <thead>
-        <tr>{headers}</tr>
+        <tr>
+          {data.headers.map((header, index) => (
+            <th key={index}>{header}</th>
+          ))}
+        </tr>
       </thead>
-      <tbody>{rows}</tbody>
+      <tbody>
+        {data.rows.map((row, index) => (
+          <tr key={index}>
+            {row.map((cell, cellIndex) => (
+              <td key={cellIndex}>{cell}</td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
     </table>
   );
 }
 
 function CustomLink(props) {
-  let href = props.href;
+  const href = props.href;
 
-  if (href.startsWith('/')) {
+  if (href.startsWith("/")) {
     return (
       <Link href={href} {...props}>
         {props.children}
@@ -38,7 +38,7 @@ function CustomLink(props) {
     );
   }
 
-  if (href.startsWith('#')) {
+  if (href.startsWith("#")) {
     return <a {...props} />;
   }
 
@@ -46,9 +46,8 @@ function CustomLink(props) {
 }
 
 function CustomUL(props) {
-  return <ul {...props}>{props.children}</ul>
+  return <ul {...props}>{props.children}</ul>;
 }
-
 
 function RoundedImage(props) {
   return <Image alt={props.alt} className="rounded-lg" {...props} />;
@@ -56,17 +55,15 @@ function RoundedImage(props) {
 
 function Callout(props) {
   return (
-    <div className="px-4 py-3 border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded p-1 text-sm flex items-center text-neutral-900 dark:text-neutral-100 mb-8">
-      <div className="flex items-center w-4 mr-4">{props.emoji}</div>
-      <div className="w-full callout">{props.children}</div>
+    <div className="mb-8 flex items-center rounded-lg border border-border bg-surface-2 px-4 py-3 text-sm text-fg">
+      <div className="mr-4 flex w-4 items-center">{props.emoji}</div>
+      <div className="callout w-full">{props.children}</div>
     </div>
   );
 }
 
-
 function Code({ children, ...props }) {
-    console.log("Children got:", children);
-  let codeHTML = highlight(children);
+  const codeHTML = highlight(children);
   return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
 }
 
@@ -74,38 +71,30 @@ function slugify(str: string) {
   return str
     .toString()
     .toLowerCase()
-    .trim() // Remove whitespace from both ends of a string
-    .replace(/\s+/g, '-') // Replace spaces with -
-    .replace(/&/g, '-and-') // Replace & with 'and'
-    .replace(/[^\w\-]+/g, '') // Remove all non-word characters except for -
-    .replace(/\-\-+/g, '-'); // Replace multiple - with single -
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/&/g, "-and-")
+    .replace(/[^\w\-]+/g, "")
+    .replace(/\-\-+/g, "-");
 }
 
-function createHeading(level) {
-  // color: var(--tw-prose-headings);
-  //   font-weight: 700;
-  //   font-size: 1.5em;
-  //   margin-top: 2em;
-  //   margin-bottom: 1em;
-  //   line-height: 1.3333333;
-  return ({ children }) => {
-    let slug = slugify(children);
-    return React.createElement(
-      `h${level}`,
-      { id: slug, className: 'font-medium text-2xl mt-8 mb-4' },
-      [
-        React.createElement('a', {
-          href: `#${slug}`,
-          key: `link-${slug}`,
-          className: 'anchor',
-        }),
-      ],
-      children
+function createHeading(level: number) {
+  const Heading = ({ children }) => {
+    const slug = slugify(children);
+    const Tag = `h${level}` as keyof JSX.IntrinsicElements;
+
+    return (
+      <Tag id={slug} className="mt-8 mb-4 font-display">
+        <a href={`#${slug}`} className="anchor no-underline" aria-hidden="true" />
+        {children}
+      </Tag>
     );
   };
+
+  return Heading;
 }
 
-let components = {
+const components = {
   h1: createHeading(1),
   h2: createHeading(2),
   h3: createHeading(3),
@@ -117,16 +106,16 @@ let components = {
   Callout,
   code: Code,
   Table,
-  ul: CustomUL
+  ul: CustomUL,
 };
 
-
-//@ts-ignore
-export default function CustomMDX(props) {
+export default function CustomMDX(
+  props: React.ComponentProps<typeof MDXRemote>
+) {
   return (
     <MDXRemote
       {...props}
-      components={{ ...components, ...(props.components || {}) }}
+      components={{ ...components, ...((props as any).components || {}) }}
     />
   );
 }

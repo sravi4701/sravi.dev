@@ -1,27 +1,65 @@
-import React from 'react'
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
-import { formatDate, getBlogPosts } from '@/utils/posts';
-import { notFound } from 'next/navigation';
-import CustomMDX from '@/components/CustomMDX';
+import Container from "@/components/layout/Container";
+import CustomMDX from "@/components/CustomMDX";
+import { formatDate, getBlogPosts } from "@/utils/posts";
 
-
-async function PageDetail({ params }: { params: { slug: string } }) {
-  console.log(params)
-  const slug = params.slug;
-  let post = getBlogPosts().find((post) => post.slug === slug);
-  if (!post) {
-      notFound()
-  }
-
-  return (
-    <main>
-      <h1 className="font-medium text-4xl mt-4 px-2 md:p-0">{post.metadata.title}</h1>
-      <div className="px-2 mb-2 md:p-0 italic">{formatDate(post.metadata.publishedAt)}</div>
-      <article className="prose md:prose-lg p-2 md:p-0">
-        <CustomMDX source={post.content} />
-      </article>
-    </main>
-  )
+export async function generateStaticParams() {
+  return getBlogPosts().map((post) => ({ slug: post.slug }));
 }
 
-export default PageDetail
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const post = getBlogPosts().find((entry) => entry.slug === params.slug);
+  if (!post) return {};
+
+  const { title, publishedAt, summary } = post.metadata;
+
+  return {
+    title,
+    description: summary ?? title,
+    alternates: { canonical: `/posts/${post.slug}` },
+    openGraph: {
+      type: "article",
+      title,
+      description: summary ?? title,
+      publishedTime: publishedAt,
+      url: `/posts/${post.slug}`,
+    },
+    twitter: { card: "summary_large_image", title, description: summary ?? title },
+  };
+}
+
+export default function PostDetail({ params }: { params: { slug: string } }) {
+  const post = getBlogPosts().find((entry) => entry.slug === params.slug);
+  if (!post) notFound();
+
+  return (
+    <article className="py-16 md:py-24">
+      <Container>
+        <Link
+          href="/posts"
+          className="label transition-colors hover:text-accent"
+        >
+          &#8592; All posts
+        </Link>
+
+        <h1 className="mt-6 font-display text-4xl leading-tight md:text-5xl">
+          {post.metadata.title}
+        </h1>
+        <p className="mt-3 font-mono text-xs text-fg-faint">
+          {formatDate(post.metadata.publishedAt)}
+        </p>
+
+        <div className="prose prose-stone mt-10 max-w-measure dark:prose-invert prose-headings:font-display prose-headings:font-normal prose-a:text-accent">
+          <CustomMDX source={post.content} />
+        </div>
+      </Container>
+    </article>
+  );
+}
