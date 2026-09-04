@@ -20,6 +20,10 @@ const display = Instrument_Serif({
   style: ["normal", "italic"],
   variable: "--font-display",
   display: "swap",
+  // Next 14 has no metric overrides for this face, which logs a warning and
+  // generates no size-adjusted fallback. Name the fallback explicitly instead.
+  adjustFontFallback: false,
+  fallback: ["Georgia", "Times New Roman", "serif"],
 });
 
 const mono = JetBrains_Mono({
