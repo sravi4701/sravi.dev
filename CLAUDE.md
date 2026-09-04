@@ -5,7 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 - Use **Yarn 4 (Berry)** — not npm/pnpm/Yarn 1. `.yarnrc.yml` sets `nodeLinker: node-modules`, and `package.json` pins `packageManager`.
-- **Never commit a Yarn 1 lockfile.** Vercel's default Yarn is 1.22, which cannot read a Berry lockfile and installs with `--frozen-lockfile`, so a format mismatch fails the deploy. `vercel.json` overrides the install command to run Yarn 4 through Corepack. If a deploy ever fails at the install step, check that override first.
+- **Never commit a Yarn 1 lockfile.** Vercel's default Yarn is 1.22, which cannot read a Berry lockfile and installs with `--frozen-lockfile`, so a format mismatch fails the deploy. `vercel.json` overrides the install and build commands to invoke Yarn 4 through the Corepack proxy (`corepack yarn ...`). Note that `corepack enable` alone is not enough on Vercel: its shims lose to Vercel's own Yarn 1 on `PATH`, so the proxy form is required. There is also no Yarn 4 on npm under the `yarn` name, so `npx yarn@4` is not a fallback.
 - Verify changes with `yarn build` before considering work done (there are no tests; the build catches type and compile errors).
 - Dev server: `yarn dev`. Lint: `yarn lint`.
 
