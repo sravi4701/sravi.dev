@@ -1,21 +1,43 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@source "../";
+
+/* Class-based dark mode, driven by next-themes on <html>. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * The semantic palette. Utilities compile to var(--color-*), so the .dark
+ * block below only has to redefine these — never write a `dark:` variant or a
+ * raw palette colour in a component.
+ */
+@theme {
+  --color-bg: #fafaf9;
+  --color-surface: #ffffff;
+  --color-surface-2: #f5f5f4;
+  --color-border: #e7e5e4;
+  --color-border-strong: #d6d3d1;
+
+  --color-fg: #1c1917;
+  --color-fg-muted: #57534e;
+  --color-fg-faint: #78716c;
+
+  --color-accent: #b45309;
+  --color-accent-hover: #92400e;
+  --color-accent-soft: #fdf3e7;
+
+  /* The *-face variables come from next/font in the layout. */
+  --font-sans: var(--font-sans-face), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display-face), Georgia, "Times New Roman", serif;
+  --font-mono: var(--font-mono-face), ui-monospace, SFMono-Regular, monospace;
+
+  --tracking-label: 0.14em;
+  --container-measure: 65ch;
+}
 
 @layer base {
   :root {
-    --bg: 250 250 249;
-    --surface: 255 255 255;
-    --surface-2: 245 245 244;
-    --border: 231 229 228;
-    --border-strong: 214 211 209;
-    --fg: 28 25 23;
-    --fg-muted: 87 83 78;
-    --fg-faint: 120 113 108;
-    --accent: 180 83 9;
-    --accent-hover: 146 64 14;
-    --accent-soft: 253 243 231;
-    --ring: 180 83 9;
+    --ring: var(--color-accent);
+    color-scheme: light;
 
     /* sugar-high syntax tokens — light */
     --sh-class: #2d5e9d;
@@ -27,23 +49,25 @@
     --sh-jsxliterals: #6266d1;
     --sh-property: #2d5e9d;
     --sh-entity: #6266d1;
-
-    color-scheme: light;
+    --sh-space: inherit;
   }
 
   .dark {
-    --bg: 11 11 12;
-    --surface: 19 19 21;
-    --surface-2: 26 26 29;
-    --border: 39 39 43;
-    --border-strong: 58 58 64;
-    --fg: 245 245 244;
-    --fg-muted: 168 162 158;
-    --fg-faint: 115 115 115;
-    --accent: 245 158 11;
-    --accent-hover: 251 191 36;
-    --accent-soft: 42 28 10;
-    --ring: 245 158 11;
+    --color-bg: #0b0b0c;
+    --color-surface: #131315;
+    --color-surface-2: #1a1a1d;
+    --color-border: #27272b;
+    --color-border-strong: #3a3a40;
+
+    --color-fg: #f5f5f4;
+    --color-fg-muted: #a8a29e;
+    --color-fg-faint: #737373;
+
+    --color-accent: #f59e0b;
+    --color-accent-hover: #fbbf24;
+    --color-accent-soft: #2a1c0a;
+
+    color-scheme: dark;
 
     /* sugar-high syntax tokens — dark */
     --sh-class: #7ab8f5;
@@ -55,8 +79,7 @@
     --sh-jsxliterals: #a5a8f0;
     --sh-property: #7ab8f5;
     --sh-entity: #a5a8f0;
-
-    color-scheme: dark;
+    --sh-space: inherit;
   }
 
   html {
@@ -79,7 +102,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid rgb(var(--ring));
+    outline: 2px solid var(--ring);
     outline-offset: 2px;
     border-radius: 2px;
   }

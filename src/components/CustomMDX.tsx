@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import Link from "next/link";
 import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -81,7 +80,7 @@ function slugify(str: string) {
 function createHeading(level: number) {
   const Heading = ({ children }) => {
     const slug = slugify(children);
-    const Tag = `h${level}` as keyof JSX.IntrinsicElements;
+    const Tag = `h${level}` as keyof React.JSX.IntrinsicElements;
 
     return (
       <Tag id={slug} className="mt-8 mb-4 font-display">
@@ -109,13 +108,8 @@ const components = {
   ul: CustomUL,
 };
 
-export default function CustomMDX(
-  props: React.ComponentProps<typeof MDXRemote>
-) {
-  return (
-    <MDXRemote
-      {...props}
-      components={{ ...components, ...((props as any).components || {}) }}
-    />
-  );
+type CustomMDXProps = React.ComponentProps<typeof MDXRemote>;
+
+export default function CustomMDX({ components: overrides, ...props }: CustomMDXProps) {
+  return <MDXRemote {...props} components={{ ...components, ...overrides }} />;
 }

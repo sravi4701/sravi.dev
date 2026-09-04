@@ -10,7 +10,7 @@ import { siteDescription, siteName, siteUrl } from "@/utils/site";
 
 const sans = Inter({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-sans-face",
   display: "swap",
 });
 
@@ -18,9 +18,9 @@ const display = Instrument_Serif({
   subsets: ["latin"],
   weight: "400",
   style: ["normal", "italic"],
-  variable: "--font-display",
+  variable: "--font-display-face",
   display: "swap",
-  // Next 14 has no metric overrides for this face, which logs a warning and
+  // Next ships no metric overrides for this face, which logs a warning and
   // generates no size-adjusted fallback. Name the fallback explicitly instead.
   adjustFontFallback: false,
   fallback: ["Georgia", "Times New Roman", "serif"],
@@ -28,7 +28,7 @@ const display = Instrument_Serif({
 
 const mono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-mono",
+  variable: "--font-mono-face",
   display: "swap",
 });
 
